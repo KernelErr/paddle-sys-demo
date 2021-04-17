@@ -6,13 +6,13 @@ use std::ptr::write;
 
 fn main() {
     #[cfg(not(target_os = "linux"))]
-    const LIB_PATH: &str = "paddle_fluid_c.dll";
+    const LIB_PATH: &str = "paddle_inference_c.dll";
 
     #[cfg(target_os = "linux")]
-    const LIB_PATH: &str = "libpaddle_fluid_c.so";
+    const LIB_PATH: &str = "libpaddle_inference_c.so";
 
     unsafe {
-        let paddle = paddle_sys::bindings::paddle_fluid_c::new(LIB_PATH).unwrap();
+        let paddle = paddle_sys::bindings::paddle_inference_c::new(LIB_PATH).unwrap();
         let config = paddle.PD_NewAnalysisConfig();
 
         let model_path = CString::new("/path/to/model").unwrap();
